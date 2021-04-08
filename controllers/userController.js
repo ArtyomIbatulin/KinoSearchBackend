@@ -5,9 +5,11 @@ const createUser = async (req, res) => {
   const { login, password, isAdmin } = req.body;
 
   try {
+    const hashPassword = await bcrypt.hash(password, 5);
+
     const user = await db.User.create({
       login,
-      password,
+      password: hashPassword,
       isAdmin,
     });
 
