@@ -4,6 +4,14 @@ const find = require('./findController');
 const findOne = require('./findOneController');
 const deleteFilm = require('./deleteController');
 const put = require('./putController');
-const createUser = require('./userController');
+const userController = require('./userController');
 
-module.exports = { health, create, find, findOne, deleteFilm, put, createUser };
+module.exports = {
+  health,
+  create,
+  find,
+  findOne,
+  deleteFilm,
+  put,
+  userController,
+};
