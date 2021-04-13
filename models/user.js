@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Film }) {
       // define association here
       this.hasMany(Film, {
-        // foreignKey: 'userId',
-        // onDelete: 'cascade',
+        foreignKey: 'userId',
+        onDelete: 'cascade',
       });
     }
   }
