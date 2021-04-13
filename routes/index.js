@@ -13,5 +13,6 @@ router.put('/api/v1/put/:id', controllers.put);
 router.post('/api/v1/sign-up', userController.registration);
 router.post('/api/v1/sign-in', userController.login);
 router.get('/api/v1/auth', authMiddleware, userController.check);
+router.get('/api/v1/getUsers', userController.getUsers);
 
 module.exports = router;
