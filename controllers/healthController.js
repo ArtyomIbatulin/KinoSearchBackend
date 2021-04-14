@@ -10,4 +10,4 @@ const health = async (req, res) => {
   }
 };
 
-module.exports = health;
+module.exports = { health };

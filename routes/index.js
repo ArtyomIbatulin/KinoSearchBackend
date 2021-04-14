@@ -1,15 +1,17 @@
 const router = require('express').Router();
-const controllers = require('../controllers');
 const authMiddleware = require('../middleware/authMiddleware');
 const userController = require('../controllers/userController');
 const categoryController = require('../controllers/categoryController');
+const filmController = require('../controllers/filmController');
+const healthController = require('../controllers/healthController');
 
-router.post('/api/v1/create', controllers.create);
-router.get('/api/v1/health', controllers.health);
-router.get('/api/v1/find', controllers.find);
-router.get('/api/v1/find/:id', controllers.findOne);
-router.delete('/api/v1/find/:id', controllers.deleteFilm);
-router.put('/api/v1/put/:id', controllers.put);
+router.get('/api/v1/health', healthController.health);
+
+router.post('/api/v1/create', filmController.createFilm);
+router.get('/api/v1/find', filmController.findFilms);
+router.get('/api/v1/find/:id', filmController.findFilm);
+router.delete('/api/v1/find/:id', filmController.deleteFilm);
+router.put('/api/v1/put/:id', filmController.putFilm);
 
 router.post('/api/v1/sign-up', userController.registration);
 router.post('/api/v1/sign-in', userController.login);
