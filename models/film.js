@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Category, {
         foreignKey: 'category',
       });
+      this.belongsToMany(models.User, { through: 'user_film', as: 'film' });
     }
   }
   Film.init(
