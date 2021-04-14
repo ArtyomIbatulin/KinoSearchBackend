@@ -29,6 +29,7 @@ module.exports = {
           model: 'Categories',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
