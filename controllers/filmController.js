@@ -39,7 +39,13 @@ const deleteFilm = async (req, res) => {
 
 const findFilms = async (req, res) => {
   try {
-    const films = await db.Film.findAll();
+    const films = await db.Film.findAll({
+      attributes: { exclude: ['category'] },
+      include: {
+        model: db.Category,
+        attributes: ['name'],
+      },
+    });
 
     return res.json(films);
   } catch (error) {

@@ -59,7 +59,36 @@ const deleteCategory = async (req, res) => {
 
 const findCategory = async (req, res) => {
   try {
-    const category = await db.Category.findAll();
+    const category = await db.Category.findAll({
+      include: {
+        model: db.Film,
+        attributes: ['name'],
+      },
+    });
+
+    return res.json(category);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};
+
+const findOneCategory = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const categoryId = await db.Category.findOne({
+      where: { id },
+    });
+
+    if (!categoryId) {
+      return res.json({ message: 'Категория с этим id не найдена' });
+    }
+
+    const category = await db.Category.findOne({
+      where: { id },
+      include: db.Film,
+    });
 
     return res.json(category);
   } catch (error) {
@@ -73,4 +102,5 @@ module.exports = {
   changeCategory,
   deleteCategory,
   findCategory,
+  findOneCategory,
 };

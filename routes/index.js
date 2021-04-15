@@ -22,5 +22,6 @@ router.post('/api/v1/createCategory', categoryController.createCategory);
 router.put('/api/v1/changeCategory/:id', categoryController.changeCategory);
 router.delete('/api/v1/delCategory/:id', categoryController.deleteCategory);
 router.get('/api/v1/findCategory', categoryController.findCategory);
+router.get('/api/v1/findCategory/:id', categoryController.findOneCategory);
 
 module.exports = router;
