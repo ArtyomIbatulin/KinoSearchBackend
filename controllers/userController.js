@@ -1,13 +1,7 @@
 const db = require('../models');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-// const generateJwt = require('../utils/token');
-
-const generateJwt = (id, login, isAdmin) => {
-  return jwt.sign({ id, login, isAdmin }, process.env.SECRET_KEY, {
-    expiresIn: 60,
-  });
-};
+// const jwt = require('jsonwebtoken');
+const generateJwt = require('../utils/token');
 
 const registration = async (req, res) => {
   const { login, password, isAdmin } = req.body;
@@ -27,7 +21,7 @@ const registration = async (req, res) => {
       isAdmin,
     });
 
-    const token = generateJwt(user.id, user.login, user.isAdmin);
+    const token = generateJwt.generateJwt(user.id, user.login, user.isAdmin);
 
     return res.json(token);
   } catch (error) {
@@ -48,13 +42,17 @@ const login = async (req, res) => {
   if (!comparePassword) {
     return res.json({ message: 'Пароль неверен' });
   }
-  const token = generateJwt(user.id, user.login, user.isAdmin);
+  const token = generateJwt.generateJwt(user.id, user.login, user.isAdmin);
 
   return res.json(token);
 };
 
 const check = async (req, res) => {
-  const token = generateJwt(req.user.id, req.user.login, req.user.role);
+  const token = generateJwt.generateJwt(
+    req.user.id,
+    req.user.login,
+    req.user.role
+  );
   return res.json(token);
 };
 
