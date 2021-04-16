@@ -57,7 +57,18 @@ const check = async (req, res) => {
 
 const getUsers = async (req, res) => {
   try {
-    const users = await db.User.findAll();
+    const users = await db.User.findAll({
+      include: [
+        {
+          model: db.Film,
+          as: 'film',
+          attributes: ['poster', 'name', 'description', 'stars'],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
 
     return res.json(users);
   } catch (error) {

@@ -41,10 +41,20 @@ const findFilms = async (req, res) => {
   try {
     const films = await db.Film.findAll({
       attributes: { exclude: ['category'] },
-      include: {
-        model: db.Category,
-        attributes: ['name'],
-      },
+      include: [
+        {
+          model: db.Category,
+          attributes: ['name'],
+        },
+        {
+          model: db.User,
+          as: 'user',
+          attributes: ['login', 'isAdmin'],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
     });
 
     return res.json(films);
