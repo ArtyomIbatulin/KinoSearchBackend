@@ -1,7 +1,6 @@
 const db = require('../models');
 const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
-const generateJwt = require('../utils/token');
+const { generateToken } = require('../utils/token');
 
 const registration = async (req, res) => {
   const { login, password, isAdmin } = req.body;
@@ -21,7 +20,7 @@ const registration = async (req, res) => {
       isAdmin,
     });
 
-    const token = generateJwt.generateJwt(user.id, user.login, user.isAdmin);
+    const token = generateToken(user.id);
 
     return res.json(token);
   } catch (error) {
@@ -42,17 +41,13 @@ const login = async (req, res) => {
   if (!comparePassword) {
     return res.json({ message: 'Пароль неверен' });
   }
-  const token = generateJwt.generateJwt(user.id, user.login, user.isAdmin);
+  const token = generateToken(user.id);
 
   return res.json(token);
 };
 
 const check = async (req, res) => {
-  const token = generateJwt.generateJwt(
-    req.user.id,
-    req.user.login,
-    req.user.role
-  );
+  const token = generateToken(req.user.id);
   return res.json(token);
 };
 
