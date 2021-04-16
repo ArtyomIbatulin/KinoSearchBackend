@@ -40,20 +40,24 @@ const deleteFilm = async (req, res) => {
 const findFilms = async (req, res) => {
   try {
     const films = await db.Film.findAll({
-      attributes: { exclude: ['category'] },
+      // where: { id: 3 },
+      // attributes: { exclude: ['category'] },
       include: [
-        {
-          model: db.Category,
-          attributes: ['name'],
-        },
-        {
-          model: db.User,
-          as: 'user',
-          attributes: ['login', 'isAdmin'],
-          through: {
-            attributes: [],
-          },
-        },
+        db.Category,
+        db.User,
+        // {
+        //   model: db.Category,
+        //   attributes: ['name'],
+        // },
+        // {
+        //   model: db.User,
+        // as: 'users',
+
+        // attributes: ['login', 'isAdmin'],
+        // through: {
+        //   attributes: [],
+        // },
+        // },
       ],
     });
 

@@ -57,7 +57,7 @@ const getUsers = async (req, res) => {
       include: [
         {
           model: db.Film,
-          as: 'film',
+          // as: 'film',
           attributes: ['poster', 'name', 'description', 'stars'],
           through: {
             attributes: [],

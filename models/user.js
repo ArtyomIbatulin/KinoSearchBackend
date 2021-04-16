@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(Film, {
         through: 'user_film',
-        as: 'film',
-        foreignKey: 'filmId',
+        // as: 'film',
+        // foreignKey: 'userId',
       });
     }
   }

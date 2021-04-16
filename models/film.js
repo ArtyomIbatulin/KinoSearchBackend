@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.belongsToMany(User, {
         through: 'user_film',
-        as: 'user',
-        foreignKey: 'userId',
+        // as: 'user',
+        // foreignKey: 'filmId',
       });
     }
   }

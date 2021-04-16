@@ -15,7 +15,7 @@ module.exports = function (req, res, next) {
 
     const decoded = verifyToken(token);
 
-    req.user = decoded; // ???
+    req.user = decoded;
     next();
   } catch (err) {
     res.status(401).json({ message: 'Не авторизован' });

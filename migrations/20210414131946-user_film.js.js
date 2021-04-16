@@ -28,7 +28,7 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      userId: {
+      UserId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
@@ -36,7 +36,7 @@ module.exports = {
         },
         allowNull: false,
       },
-      filmId: {
+      FilmId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Films',
